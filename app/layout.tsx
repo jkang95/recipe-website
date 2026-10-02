@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import SiteFooter from "@/components/home/layout/site-footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,26 +16,26 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Jingles",
-  description: "Jingu's kitchen journey to release his secret recipe learned throughout his life as a Chef",
+  description: "진구의 레시피 웹사이트",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="ko"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <header className="flex justify-between">
-          <a href="/">Jingles</a>
-          
+          <Link href="/">Jingles</Link>
           <nav className="flex gap-4">
-            <a href="#recipe">레시피</a>
-            <a href="#story">요리사 이야기</a>
-            <a href="#contact">문의</a> 
+            <Link href="/recipes">레시피</Link>
+            <Link href="/about">요리사 이야기</Link>
+            <Link href="/contact">문의</Link>
           </nav>
-        </header>  
+        </header>
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
