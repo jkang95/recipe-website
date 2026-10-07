@@ -1,15 +1,5 @@
-type RecipeCategory = "소스" | "메인 요리" | "디저트" | "밀프렙";
-
-type Recipe = {
-    id: number;
-    name: string;
-    category: RecipeCategory;
-    serving: number;
-}
-
-type RecipeCardProps = {
-    recipe : Recipe
-};
+import type { Recipe } from "@/types/recipe-types";
+import RecipeCard from "@/components/home/recipe-card";
 
 const sampleRecipes: Recipe[] = [
     {
@@ -38,20 +28,6 @@ const sampleRecipes: Recipe[] = [
     }
 ];
 
-function RecipeCard(props: RecipeCardProps) {
-    const {category, name, serving} = props.recipe;
-  return (
-    <article>
-        <div>
-        </div>
-        <p>{category}</p>
-        <h3>{name}</h3>
-        <p>{serving}인분</p>     
-    </article>
-  );
-}
-
-
 export default function RecipeSection() {
     return (
         <section id="recipes" aria-labelledby="recipes-heading">
@@ -60,7 +36,7 @@ export default function RecipeSection() {
                 <ul>
                     {sampleRecipes.map(recipe => 
                     <li key={recipe.id}>
-                        <RecipeCard recipe = {recipe} />
+                        <RecipeCard recipe={recipe} />
                     </li>
                     )}
                 </ul>
