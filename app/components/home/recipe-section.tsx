@@ -39,10 +39,10 @@ const categories: RecipeCategory[] = ["소스", "메인 요리", "디저트", "�
 export default function RecipeSection() {
     
     return (
-        <section id="recipes" aria-labelledby="recipes-heading">
-            <div>
-                <h2>카테고리별로 보기</h2>
-                <ul>
+        <section id="recipes" aria-labelledby="recipes-heading" className="mx-auto w-full max-w-7xl border-b border-line bg-canvas">
+            <div className="px-6 py-12 sm:px-8 md:py-16">
+                <h2 className="font-serif text-2xl text-ink sm:text-3xl">카테고리별로 보기</h2>
+                <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {categories.map(category =>
                         <li key={category}>
                             <h3>{category}</h3>
@@ -50,8 +50,8 @@ export default function RecipeSection() {
                         </li>
                     )}
                 </ul>
-                <h2 id="recipes-heading">오늘의 레시피</h2>
-                <ul>
+                <h2 id="recipes-heading" className="mt-12 border-t border-line pt-10 font-serif text-2xl text-ink sm:text-3xl">오늘의 레시피</h2>
+                <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {sampleRecipes.map(recipe => 
                     <li key={recipe.id}>
                         <RecipeCard recipe={recipe} />
