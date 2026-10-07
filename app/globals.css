@@ -9,6 +9,18 @@
   --surface: #fbf9f4;
   --cta: #25241f;
   --cta-hover: #40392f;
+  
+  --category-sauce-start: #f0e2dc;
+  --category-sauce-end: #dfb9a7;
+
+  --category-main-start: #e8dfce;
+  --category-main-end: #d2b993;
+
+  --category-dessert-start: #f6edcf;
+  --category-dessert-end: #e9d27f;
+
+  --category-mealprep-start: #dbe7d7;
+  --category-mealprep-end: #a9c39f;
 }
 
 @theme inline {
@@ -20,6 +32,18 @@
   --color-surface: var(--surface);
   --color-cta: var(--cta);
   --color-cta-hover: var(--cta-hover);
+
+  --color-category-sauce-start: var(--category-sauce-start);
+  --color-category-sauce-end: var(--category-sauce-end);
+
+  --color-category-main-start: var(--category-main-start);
+  --color-category-main-end: var(--category-main-end);
+
+  --color-category-dessert-start: var(--category-dessert-start);
+  --color-category-dessert-end: var(--category-dessert-end);
+
+  --color-category-mealprep-start: var(--category-mealprep-start);
+  --color-category-mealprep-end: var(--category-mealprep-end);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);

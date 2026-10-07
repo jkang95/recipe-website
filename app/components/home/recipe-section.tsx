@@ -36,17 +36,24 @@ const sampleRecipes: Recipe[] = [
 
 const categories: RecipeCategory[] = ["소스", "메인 요리", "디저트", "밀프렙"];
 
+const categoryGradients = {
+    소스 : "from-category-sauce-start to-category-sauce-end",
+    "메인 요리" : "from-category-main-start to-category-main-end",
+    디저트 : "from-category-dessert-start to-category-dessert-end",
+    밀프렙 : "from-category-mealprep-start to-category-mealprep-end"
+};
+
 export default function RecipeSection() {
     
     return (
         <section id="recipes" aria-labelledby="recipes-heading" className="mx-auto w-full max-w-7xl border-b border-line bg-canvas">
-            <div className="px-6 py-12 sm:px-8 md:py-16">
+            <div className="px-6 py-12 sm:px-8 md:px-10 md:py-16">
                 <h2 className="font-serif text-2xl text-ink sm:text-3xl">카테고리별로 보기</h2>
                 <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {categories.map(category =>
-                        <li key={category}>
-                            <h3>{category}</h3>
-                            <p>{sampleRecipes.filter(recipe => recipe.category === category).length}개 레시피</p>
+                        <li key={category} className={categoryGradients[category] + " min-h-36 rounded-xl border border-ink/10 bg-linear-to-br p-5 text-ink"}>
+                            <h3 className="font-serif text-2xl leading-tight">{category}</h3>
+                            <p className="mt-2 text-sm text-ink/75">{sampleRecipes.filter(recipe => recipe.category === category).length}개 레시피</p>
                         </li>
                     )}
                 </ul>
