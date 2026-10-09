@@ -8,7 +8,7 @@ export default function AboutContactCta() {
           ONE GOOD SAUCE. A WHOLE NEW DISH
         </p>
 
-        <h2 id="about-contact-heading" className="max-w-md font-serif text-4xl leading-tight text-ink md:text-5xl">
+        <h2 id="about-contact-heading" className="max-w-md font-serif text-4xl leading-tight text-ink md:text-5xl break-keep">
           좋은 소스 하나가
           <br />
           맛의
