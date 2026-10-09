@@ -6,7 +6,7 @@ export default function IntroSection() {
           FROM PROFESSIONAL KITCHENS TO YOUR HOME
         </p>
 
-        <h1 id="intro-heading" className="max-w-xl font-serif text-4xl leading-[1.15] text-ink md:text-5xl">
+        <h1 id="intro-heading" className="max-w-xl font-serif text-4xl leading-[1.15] text-ink md:text-5xl break-keep">
           주방에서 직접 사용하는 레시피를 집에서도 간단하게
         </h1>
 
