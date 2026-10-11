@@ -1,4 +1,5 @@
-
+import { sampleRecipes } from "@/data/sample-recipes";
+import { notFound } from "next/navigation";
 
 export default async function RecipeDetail({
     params,
@@ -8,10 +9,17 @@ export default async function RecipeDetail({
 
     const { id } = await params;
 
+    const recipeId = Number(id);
+
+    const recipe = sampleRecipes.find(recipe => recipe.id === recipeId);
+
+    if (!recipe) {
+        return notFound();
+    }
+
   return (
     <main>
-        <h1>레시피 상세</h1>
-        <p>레시피 번호 {id}</p>
+        <h1>{recipe.name}</h1>
     </main>
   )
 }
