@@ -1,4 +1,6 @@
 import { categories, categoryGradients } from "@/constants/recipe-categories";
+import { Recipe } from "@/types/recipe-types";
+import RecipeCard from "@/components/home/recipe-card";
 import Link from "next/link";
 
 export default async function Recipes({
@@ -17,6 +19,41 @@ export default async function Recipes({
             selectedCategory = value;
         }
     }
+
+    const sampleRecipes: Recipe[] = [
+        {
+            id: 1,
+            name: "치미추리",
+            category: "소스",
+            serving: 1
+        },
+        {
+            id: 2,
+            name: "제육볶음",
+            category: "메인 요리",
+            serving: 2
+        },
+        {
+            id: 3,
+            name: "티라미수",
+            category: "디저트",
+            serving: 3
+        },
+        {
+            id: 4,
+            name: "닭가슴살 부리또",
+            category: "밀프렙",
+            serving: 7
+        },
+        {
+            id: 5,
+            name: "고단백 라자냐",
+            category: "밀프렙",
+            serving: 7
+        }
+    ];
+    
+    const filteredRecipes = selectedCategory === "전체" ? sampleRecipes : sampleRecipes.filter(recipe => recipe.category === selectedCategory);
 
     return (
         <main>
@@ -44,6 +81,17 @@ export default async function Recipes({
                     )}
                 </ul>
             </nav>
+            <p className="mt-8 text-sm text-ink/60">{filteredRecipes.length}개 레시피</p>
+            {filteredRecipes.length === 0 && (
+                <p className="mt-6 rounded-xl border border-line p-6 text-sm text-ink/70">아직 등록된 레시피가 없어요.</p>
+            )}
+            <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredRecipes.map(recipe => 
+                    <li key={recipe.id}>
+                        <RecipeCard recipe={recipe} />
+                    </li>
+                )}
+            </ul>
         </main>
     );
 }
