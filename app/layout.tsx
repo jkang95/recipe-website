@@ -25,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="ko"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="min-h-svh flex flex-col font-sans">
         <header className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-4 border-b border-line px-6 py-5 sm:px-8 md:grid-cols-[1fr_auto_1fr]">
           <Link href="/" className="justify-self-center font-serif text-xl text-ink md:justify-self-start">Jingles</Link>
           <nav aria-label="주요메뉴" className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-body md:col-start-2 md:row-start-1">
