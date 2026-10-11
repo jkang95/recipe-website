@@ -1,4 +1,5 @@
-import type { Recipe, RecipeCategory } from "@/types/recipe-types";
+import type { Recipe } from "@/types/recipe-types";
+import { categories, categoryGradients } from "@/constants/recipe-categories";
 import RecipeCard from "@/components/home/recipe-card";
 import Link from "next/link";
 
@@ -34,15 +35,6 @@ const sampleRecipes: Recipe[] = [
         serving: 7
     }
 ];
-
-const categories: RecipeCategory[] = ["소스", "메인 요리", "디저트", "밀프렙"];
-
-const categoryGradients = {
-    소스 : "from-category-sauce-start to-category-sauce-end",
-    "메인 요리" : "from-category-main-start to-category-main-end",
-    디저트 : "from-category-dessert-start to-category-dessert-end",
-    밀프렙 : "from-category-mealprep-start to-category-mealprep-end"
-};
 
 export default function RecipeSection() {
     
