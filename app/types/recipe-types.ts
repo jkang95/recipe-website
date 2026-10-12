@@ -5,8 +5,22 @@ export type Recipe = {
     name: string;
     category: RecipeCategory;
     serving: number;
+    ingredients: RecipeIngredient[];
+    steps: RecipeStep[];
 }
 
 export type RecipeCardProps = {
     recipe : Recipe
 };
+
+export type RecipeIngredient = {
+    name: string;
+    quantity: number | null;
+    unit: string;
+    note?: string;
+}
+
+export type RecipeStep = {
+    title: string;
+    description: string;
+}
