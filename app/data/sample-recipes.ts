@@ -21,6 +21,7 @@ export const sampleRecipes: Recipe[] = [
             title: "파슬리를 손질합니다",
             description: "씻은 파슬리의 물기를 제거하고 잘게 다집니다."
         }],
+        chefNote: "파슬리는 물기를 충분히 제거한 뒤 사용하면 소스가 묽어지는 것을 줄일 수 있어요."
     },
     {
         id: 2,
