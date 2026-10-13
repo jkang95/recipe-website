@@ -7,11 +7,12 @@ export type Recipe = {
     serving: number;
     ingredients: RecipeIngredient[];
     steps: RecipeStep[];
-    chefNote? : string;
+    chefNote?: string;
+    description: string;
 }
 
 export type RecipeCardProps = {
-    recipe : Recipe
+    recipe: Recipe
 };
 
 export type RecipeIngredient = {
