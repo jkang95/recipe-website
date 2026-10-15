@@ -9,6 +9,9 @@ export type Recipe = {
     steps: RecipeStep[];
     chefNote?: string;
     description: string;
+    prepMinutes: number;
+    cookMinutes: number;
+    difficulty: RecipeDifficulty;
 }
 
 export type RecipeCardProps = {
@@ -26,3 +29,5 @@ export type RecipeStep = {
     title: string;
     description: string;
 }
+
+type RecipeDifficulty = "쉬움" | "보통" | "어려움";
