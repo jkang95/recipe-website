@@ -44,7 +44,33 @@ export default async function RecipeDetail({
                     {recipe.serving}인분
                 </dd>
             </div>
+            <div>
+                <dt className="text-xs text-body">전체 시간</dt>
+                <dd className="mt-1 font-serif text-xl leading-relaxed text-ink sm:text-2xl">
+                    {recipe.prepMinutes + recipe.cookMinutes}분
+                    <small className="mt-1 block font-sans text-xs leading-relaxed text-body">
+                        준비 {recipe.prepMinutes}분 · 조리 {recipe.cookMinutes}분
+                    </small>
+                </dd>
+            </div>
+            <div>
+                <dt className="text-xs text-body">난이도</dt>
+                <dd className="mt-1 font-serif text-xl leading-relaxed text-ink sm:text-2xl">
+                    {recipe.difficulty}
+                </dd>
+            </div>
         </dl>
+        <nav aria-label="이 레시피에서" className="flex flex-wrap gap-x-4 gap-y-1 pt-4 text-xs text-body sm:gap-x-6">
+            <a href="#ingredients" className="inline-flex min-h-11 items-center transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink">
+                재료
+            </a>
+            <a href="#steps" className="inline-flex min-h-11 items-center transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink">
+                만드는 법
+            </a>
+            {recipe.chefNote && <a href="#chef-note" className="inline-flex min-h-11 items-center transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink">
+                셰프 노트
+            </a>}
+        </nav>
         <section id="ingredients" aria-labelledby="ingredients-heading">
             <h2 id="ingredients-heading">재료</h2>
             <ul>
@@ -59,7 +85,7 @@ export default async function RecipeDetail({
                 )}
             </ul>
         </section>
-        <section aria-labelledby="steps-heading">
+        <section id="steps" aria-labelledby="steps-heading">
             <h2 id="steps-heading">만드는 법</h2>
             <ol>
                 {recipe.steps.map((step, i) =>
@@ -71,7 +97,7 @@ export default async function RecipeDetail({
             </ol>
         </section>
         {recipe.chefNote && (
-            <section aria-labelledby="chef-note-heading">
+            <section id="chef-note" aria-labelledby="chef-note-heading">
                 <p>CHEF&apos;S NOTE</p>
                 <h2 id="chef-note-heading">셰프 노트</h2>
                 <p>{recipe.chefNote}</p>
