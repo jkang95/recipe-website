@@ -21,6 +21,8 @@
 
   --category-mealprep-start: #dbe7d7;
   --category-mealprep-end: #a9c39f;
+
+  --panel: #eae2ce;
 }
 
 @theme inline {
@@ -45,6 +47,8 @@
   --color-category-mealprep-start: var(--category-mealprep-start);
   --color-category-mealprep-end: var(--category-mealprep-end);
 
+  --color-panel: var(--panel);
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

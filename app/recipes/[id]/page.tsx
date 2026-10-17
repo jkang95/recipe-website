@@ -71,36 +71,62 @@ export default async function RecipeDetail({
                 셰프 노트
             </a>}
         </nav>
-        <section id="ingredients" aria-labelledby="ingredients-heading">
-            <h2 id="ingredients-heading">재료</h2>
-            <ul>
-                {recipe.ingredients.map(ingredient => 
-                    <li key={ingredient.name}>
-                        <span>{ingredient.name}</span>
-                        {ingredient.quantity !== null && (
-                            <span> {ingredient.quantity}{ingredient.unit}</span>
-                        )}
-                        {ingredient.note && (<p className="text-sm text-ink/65">{ingredient.note}</p>)}
-                    </li>
-                )}
-            </ul>
-        </section>
-        <section id="steps" aria-labelledby="steps-heading">
-            <h2 id="steps-heading">만드는 법</h2>
-            <ol>
-                {recipe.steps.map((step, i) =>
-                    <li key={i}>
-                        <h3>{i+1} {step.title}</h3>
-                        <p>{step.description}</p>
-                    </li>
-                )}
-            </ol>
-        </section>
+        <div className="mt-6 grid items-start gap-10 md:mt-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] md:gap-9">
+            <section id="ingredients" aria-labelledby="ingredients-heading">
+                <h2 id="ingredients-heading" className="font-serif text-2xl leading-normal tracking-tight text-ink sm:text-3xl">재료</h2>
+                <ul className="mt-4 divide-y divide-line rounded-xl bg-panel px-4 py-2 sm:px-5">
+                    {recipe.ingredients.map(ingredient => 
+                        <li key={ingredient.name}>
+                            <label className="flex min-h-15 cursor-pointer items-center gap-2.5 py-3">
+                                <input type="checkbox" className="h-4 w-4 shrink-0 accent-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink" />
+                                    <span className="min-w-0 flex-1">
+                                        <span className="block text-sm text-ink break-keep">
+                                            {ingredient.name}
+                                        </span>
+                                        {ingredient.note && (
+                                            <small className="mt-0.5 block text-xs leading-relaxed text-ink/75">
+                                                {ingredient.note}
+                                            </small>)
+                                        }
+                                    </span>
+
+                                    {ingredient.quantity !== null && (
+                                        <span className="shrink-0 whitespace-nowrap text-xs tabular-nums text-ink">
+                                            {ingredient.quantity}{ingredient.unit}
+                                        </span>
+                                    )}
+                            </label>
+                        </li>
+                    )}
+                </ul>
+            </section>
+            <section id="steps" aria-labelledby="steps-heading">
+                <div className="flex min-h-11 flex-wrap items-center justify-between gap-3">
+                    <h2 id="steps-heading" className="font-serif text-2xl leading-normal tracking-tight text-ink sm:text-3xl">만드는 법</h2>
+                    <span className="text-xs text-body">
+                        {recipe.steps.length}단계
+                    </span>
+                </div>
+                <ol className="mt-6 flex flex-col gap-6">
+                    {recipe.steps.map((step, i) =>
+                        <li key={i} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-3.5">
+                            <span aria-hidden="true" className="grid h-8 w-8 place-items-center rounded-full border border-line font-serif text-lg text-ink">
+                                {i+1}
+                            </span>
+                            <div className="min-w-0">
+                                <h3 className="pt-0.5 text-base font-medium leading-7 text-ink break-keep"> {step.title}</h3>
+                                <p className="mt-2 text-sm leading-7 text-body break-keep">{step.description}</p>
+                            </div>
+                        </li>
+                    )}
+                </ol>
+            </section>
+        </div>
         {recipe.chefNote && (
-            <section id="chef-note" aria-labelledby="chef-note-heading">
-                <p>CHEF&apos;S NOTE</p>
-                <h2 id="chef-note-heading">셰프 노트</h2>
-                <p>{recipe.chefNote}</p>
+            <section id="chef-note" aria-labelledby="chef-note-heading" className="mt-9 rounded-xl bg-panel px-5 py-6 sm:mt-11 sm:px-7">
+                <p className="text-xs font-medium tracking-[0.16em] text-accent">CHEF&apos;S NOTE</p>
+                <h2 id="chef-note-heading" className="mt-1 font-serif text-xl leading-normal tracking-tight text-ink sm:text-2xl">셰프 노트</h2>
+                <p className="mt-4 text-sm leading-7 text-ink/75 break-keep">{recipe.chefNote}</p>
             </section>
         )}
     </main>
