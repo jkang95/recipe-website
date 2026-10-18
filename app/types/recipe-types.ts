@@ -31,3 +31,8 @@ export type RecipeStep = {
 }
 
 type RecipeDifficulty = "쉬움" | "보통" | "어려움";
+
+export type RecipeIngredientsProps = {
+    serving: number;
+    ingredients: RecipeIngredient[];
+}
