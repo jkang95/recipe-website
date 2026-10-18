@@ -1,11 +1,13 @@
 import { sampleRecipes } from "@/data/sample-recipes";
 import { categoryGradients } from "@/constants/recipe-categories";
+import { getRelatedRecipes } from "@/data/get-related-recipes";
 import { notFound } from "next/navigation";
+import RecipeCard from "@/components/home/recipe-card";
 
 export default async function RecipeDetail({
     params,
 }: {
-    params: Promise<{ id: string}>;
+    params: Promise<{ id: string }>;
 }) {
 
     const { id } = await params;
@@ -17,6 +19,8 @@ export default async function RecipeDetail({
     if (!recipe) {
         return notFound();
     }
+
+    const relatedRecipes = getRelatedRecipes(recipeId, recipe.category);
 
   return (
     <main className="mx-auto w-full max-w-7xl border-b border-line px-6 py-10 sm:px-8 md:px-10 md:py-12">
@@ -69,6 +73,9 @@ export default async function RecipeDetail({
             </a>
             {recipe.chefNote && <a href="#chef-note" className="inline-flex min-h-11 items-center transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink">
                 셰프 노트
+            </a>}
+            {relatedRecipes.length > 0 && <a href="#related-recipes" className="inline-flex min-h-11 items-center transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink">
+                함께 둘러보기
             </a>}
         </nav>
         <div className="mt-6 grid items-start gap-10 md:mt-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.35fr)] md:gap-9">
@@ -129,6 +136,21 @@ export default async function RecipeDetail({
                 <p className="mt-4 text-sm leading-7 text-ink/75 break-keep">{recipe.chefNote}</p>
             </section>
         )}
+        {relatedRecipes.length > 0 && <section id="related-recipes" aria-labelledby="related-recipes-heading" className="mt-9 border-t border-line pt-6 sm:mt-12 sm:pt-8">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2 id="related-recipes-heading" className="font-serif text-2xl leading-normal tracking-tight text-ink sm:text-3xl">
+                    함께 둘러볼 레시피
+                </h2>
+                <span className="text-xs text-body">주방의 다른 기록</span>
+            </div>
+            <ul className="mt-6 grid grid-cols-1 gap-7 sm:grid-cols-3 sm:gap-6">
+                {relatedRecipes.map(recipe =>
+                    <li key={recipe.id}>
+                        <RecipeCard recipe={recipe} />
+                    </li>
+                )}
+            </ul>
+        </section>}
     </main>
   )
 }
