@@ -3,6 +3,7 @@ import { categoryGradients } from "@/constants/recipe-categories";
 import { getRelatedRecipes } from "@/data/get-related-recipes";
 import { notFound } from "next/navigation";
 import RecipeCard from "@/components/home/recipe-card";
+import Link from "next/link";
 
 export default async function RecipeDetail({
     params,
@@ -23,7 +24,34 @@ export default async function RecipeDetail({
     const relatedRecipes = getRelatedRecipes(recipeId, recipe.category);
 
   return (
-    <main className="mx-auto w-full max-w-7xl border-b border-line px-6 py-10 sm:px-8 md:px-10 md:py-12">
+    <main className="mx-auto w-full max-w-7xl border-b border-line px-6 pt-6 pb-10 sm:px-8 sm:pt-7 md:px-10 md:pb-12">
+        <nav aria-label="현재 위치" className="mb-6 text-xs leading-relaxed text-body sm:mb-8">
+            <ol className="flex flex-wrap items-center gap-2">
+                <li>
+                    <Link href="/recipes" className="inline-flex min-h-6 items-center transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink">
+                        레시피
+                    </Link>
+                </li>
+                <li className="inline-flex items-center gap-2">
+                    <span aria-hidden="true">/</span>
+                    <Link href={{
+                        pathname: "/recipes",
+                        query: { category: recipe.category}
+                        }}
+                        className="inline-flex min-h-6 items-center transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+                    >
+                        {recipe.category}
+                    </Link>
+                </li>
+                <li className="inline-flex items-center gap-2 text-ink">
+                    <span aria-hidden="true">/</span>
+                    <span aria-current="page">{recipe.name}</span>
+                </li>
+            </ol>
+        </nav>
+
+
+        
         <header className="grid gap-7 pb-7 sm:grid-cols-2 sm:items-center sm:gap-6 sm:pb-9 md:gap-10">
             <div className="min-w-0">
                 <p className="text-xs font-medium tracking-[0.16em] text-accent">FROM THE KITCHEN</p>
