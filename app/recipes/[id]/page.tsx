@@ -1,10 +1,10 @@
-import { sampleRecipes } from "@/data/sample-recipes";
 import { categoryGradients } from "@/constants/recipe-categories";
 import { getRelatedRecipes } from "@/data/get-related-recipes";
 import { notFound } from "next/navigation";
 import RecipeCard from "@/components/home/recipe-card";
 import Link from "next/link";
 import RecipeIngredients from "./recipe-ingredients";
+import { getRecipeById, getRecipeSummaries } from "../../../lib/recipes";
 
 export default async function RecipeDetail({
     params,
@@ -13,16 +13,17 @@ export default async function RecipeDetail({
 }) {
 
     const { id } = await params;
-
     const recipeId = Number(id);
 
-    const recipe = sampleRecipes.find(recipe => recipe.id === recipeId);
+    const recipe = await getRecipeById(recipeId);
 
     if (!recipe) {
         return notFound();
     }
 
-    const relatedRecipes = getRelatedRecipes(recipeId, recipe.category);
+    const recipeSummaries = await getRecipeSummaries();
+
+    const relatedRecipes = getRelatedRecipes(recipeId, recipe.category, recipeSummaries);
 
   return (
     <main className="mx-auto w-full max-w-7xl border-b border-line px-6 pt-6 pb-10 sm:px-8 sm:pt-7 md:px-10 md:pb-12">

@@ -1,9 +1,8 @@
-import type { RecipeCategory } from "@/types/recipe-types";
-import { sampleRecipes } from "./sample-recipes";
+import type { RecipeCategory, RecipeSummary } from "@/types/recipe-types";
 
 // 함께 둘러볼 레시피들을 랜덤하게 뽑아주는 함수
-export function getRelatedRecipes(recipeId: number, category: RecipeCategory) {
-    const candidateRecipes = sampleRecipes.filter(recipe => recipe.id !== recipeId); // 레시피 페이지와 같은 레시피가 아닌 레시피들만 추린 배열
+export function getRelatedRecipes(recipeId: number, category: RecipeCategory, recipeSumaries: RecipeSummary[]): RecipeSummary[] {
+    const candidateRecipes = recipeSumaries.filter(recipe => recipe.id !== recipeId); // 레시피 페이지와 같은 레시피가 아닌 레시피들만 추린 배열
     const sameCategoryRecipes = candidateRecipes.filter(candidateRecipe => candidateRecipe.category === category); // 같은 카테고리의 레시피만 뽑아낸 배열
     const otherCategoryRecipes = candidateRecipes.filter(candidateRecipe => candidateRecipe.category !== category); // 카테고리가 다른 레시피만 뽑아낸 배열
     const remainingRecipes = [...sameCategoryRecipes]; // 같은 카테고리의 레시피 배열을 복사
