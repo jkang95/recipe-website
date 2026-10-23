@@ -14,8 +14,13 @@ export type Recipe = {
     difficulty: RecipeDifficulty;
 }
 
+export type RecipeSummary = Pick<
+    Recipe,
+    "id" | "name" | "category" | "serving"
+>;
+
 export type RecipeCardProps = {
-    recipe: Recipe
+    recipe: RecipeSummary;
 };
 
 export type RecipeIngredient = {
@@ -35,4 +40,8 @@ type RecipeDifficulty = "쉬움" | "보통" | "어려움";
 export type RecipeIngredientsProps = {
     serving: number;
     ingredients: RecipeIngredient[];
+}
+
+export type RecipeSectionProps = {
+    recipes: RecipeSummary[];
 }

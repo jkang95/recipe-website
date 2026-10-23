@@ -1,5 +1,5 @@
 import { categories, categoryGradients } from "@/constants/recipe-categories";
-import { sampleRecipes } from "@/data/sample-recipes";
+import { getRecipeSummaries } from "../../lib/recipes";
 import RecipeCard from "@/components/home/recipe-card";
 import Link from "next/link";
 
@@ -20,7 +20,9 @@ export default async function Recipes({
         }
     }
     
-    const filteredRecipes = selectedCategory === "전체" ? sampleRecipes : sampleRecipes.filter(recipe => recipe.category === selectedCategory);
+    const recipeSummaries = await getRecipeSummaries();
+
+    const filteredRecipes = selectedCategory === "전체" ? recipeSummaries : recipeSummaries.filter(recipe => recipe.category === selectedCategory);
 
     return (
         <main className="mx-auto w-full max-w-7xl border-b border-line px-6 pb-16 sm:px-8 md:px-10">
